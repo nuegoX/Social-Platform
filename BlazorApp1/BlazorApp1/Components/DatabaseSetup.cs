@@ -7,11 +7,30 @@
     {
         public static void ConfigureDbContext(IServiceCollection services, IConfiguration configuration)
         {
+            var serverVersion = "10.4.28-MariaDB";
+
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
-                    ServerVersion.Parse("8.0.32")); // server version
+                options.UseMySql(
+                    configuration.GetConnectionString("DefaultConnection"),
+                    ServerVersion.Parse(serverVersion)
+                )
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole())); // Enable logging to console
             });
+
+            var serviceProvider = services.BuildServiceProvider();
+            var dbContext = serviceProvider.GetService<DatabaseContext>();
+
+            try
+            {
+                // Attempt to execute a simple query to force the physical connection
+                var result = dbContext.Users.Any(); // You can replace Users with any DbSet in your DbContext
+                Console.WriteLine("Connected to the database successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to connect to the database. Error: {ex.Message}");
+            }
         }
     }
 }

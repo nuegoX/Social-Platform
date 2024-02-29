@@ -1,13 +1,22 @@
 using BlazorApp1.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Register DatabaseContext
+builder.Services.AddDbContext<DatabaseContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    var serverVersion = builder.Configuration["MySqlServerVersion"];
+
+    options.UseMySql(connectionString, ServerVersion.Parse("10.4.28-MariaDB"));
+});
 
 var app = builder.Build();
 

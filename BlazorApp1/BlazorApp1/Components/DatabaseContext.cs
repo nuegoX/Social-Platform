@@ -1,7 +1,7 @@
-﻿namespace BlazorApp1.Components
+﻿// DatabaseContext.cs
+namespace BlazorApp1.Components
 {
     using Microsoft.EntityFrameworkCore;
-    using Mysqlx.Crud;
 
     public class DatabaseContext : DbContext
     {
@@ -9,8 +9,9 @@
             : base(options)
         {
         }
-
-        // Define your DbSet properties for data models here
-        public DbSet<User> MyData { get; set; }
+            
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
