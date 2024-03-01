@@ -28,8 +28,8 @@ const Navbar = () => {
       <p className='text-pink-400 mt-4 ml-1 hover:cursor-default'>app</p>
       </div>
 
-      {user?.email ? (<Link to='/chat'><p className='text-blue-500 text-3xl cursor-pointer hover:text-purple-400
-       hover:border-blue-500 hover:border-b transition duration-500'>feed</p></Link>) : (<span></span>)}
+      {user?.email ? (<Link to='/dashboard'><p className='text-blue-500 text-3xl cursor-pointer hover:text-purple-400
+       hover:border-blue-500 hover:border-b transition duration-500'>Dashboard</p></Link>) : (<span></span>)}
       
 
       {user?.email ? (

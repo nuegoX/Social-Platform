@@ -5,9 +5,10 @@ import PostList from '../components/PostList'
 const Dashboard = () => {
   return (
     <>
-    <CreatePost />
-    <PostList />
-    
+    <div className='pt-[50px]'>
+      <CreatePost />
+      <PostList />
+    </div>
     </>
   )
 }

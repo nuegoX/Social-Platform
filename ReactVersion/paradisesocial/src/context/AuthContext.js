@@ -15,7 +15,7 @@ export function AuthContextProvider({children}) {
             commentCount: 0,
             role: "User",
         });
-        setDoc(doc(db, 'posts', email), {
+/*        setDoc(doc(db, 'posts', email), {
             id: 8,
             publisher: "HugoAdmin",
             title: "Horrible design is not a thing on this website!",
@@ -25,7 +25,7 @@ export function AuthContextProvider({children}) {
             postId: 8,
             publisher: "Critic",
             text: "Here is a comment. Whats up?",
-        });
+        });*/
     }
     function logIn(email, password) {
         return signInWithEmailAndPassword(auth, email, password)

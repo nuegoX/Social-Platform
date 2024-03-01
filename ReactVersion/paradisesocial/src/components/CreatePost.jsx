@@ -1,32 +1,42 @@
 import React, { useState } from 'react';
 import { db, auth } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, getDocs, query, where } from 'firebase/firestore';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleCreatePost = async () => {
-    if (!auth.currentUser) {
-      // Handle case when the user is not logged in
+    if (!auth.currentUser || !title || !description) {
+      // Handle case when the user is not logged in or post fields are empty
       return;
     }
 
-    const postData = {
-      id: Math.floor(Math.random() * 1000), // Example: Generate a random number for the ID
-      publisher: auth.currentUser.displayName || auth.currentUser.email,
-      title,
-      description,
-    };
-
     try {
-      // Use addDoc with an empty document reference to auto-generate an ID
-      await addDoc(collection(db, 'posts'), postData);
+      const postData = {
+        publisher: auth.currentUser.displayName || auth.currentUser.email,
+        title,
+        description,
+        timestamp: serverTimestamp(), // Use server timestamp
+      };
+
+      // Add the post to the 'posts' collection with auto-generated ID
+      const docRef = await addDoc(collection(db, 'posts'), postData);
+
+      // Optionally, you can count the comments for this post
+      const commentsQuery = query(collection(db, 'comments'), where('postId', '==', docRef.id));
+      const commentsSnapshot = await getDocs(commentsQuery);
+      const commentCount = commentsSnapshot.size;
+
+      // Update the post with the comment count
+      await docRef.update({ commentCount });
+
       // Clear the input fields
       setTitle('');
       setDescription('');
-      // Optionally, you can trigger a refresh of the posts on the home screen
-      // (this depends on how your overall app structure is organized)
+
+      // Refresh the page after creating a post
+      window.location.reload();
     } catch (error) {
       console.error('Error creating post: ', error.message);
     }
