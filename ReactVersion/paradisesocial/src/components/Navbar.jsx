@@ -23,13 +23,13 @@ const Navbar = () => {
       <div className='flex flex-row'>
       <p className='text-blue-500 text-4xl font-bold cursor-default'>my</p>
       <Link to='/'>
-        <h1 className='text-blue-600 text-4xl font-bold cursor-pointer hover:text-purple-400 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-slow infinite'>COLOR</h1>
+        <h1 className='text-blue-600 text-4xl font-bold cursor-pointer hover:text-purple-400 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-slow infinite'>Social Paradise</h1>
       </Link>
       <p className='text-pink-400 mt-4 ml-1 hover:cursor-default'>app</p>
       </div>
 
       {user?.email ? (<Link to='/chat'><p className='text-blue-500 text-3xl cursor-pointer hover:text-purple-400
-       hover:border-blue-500 hover:border-b transition duration-500'>chat</p></Link>) : (<span></span>)}
+       hover:border-blue-500 hover:border-b transition duration-500'>feed</p></Link>) : (<span></span>)}
       
 
       {user?.email ? (

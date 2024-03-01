@@ -11,11 +11,21 @@ export function AuthContextProvider({children}) {
     function signUp(email, password) {
         createUserWithEmailAndPassword(auth, email, password)
         setDoc(doc(db, 'users', email), {
-            colorCoins: 0,
-            nickname: "User",
-            role: "Member",
-            totalMessages: 0,
-        })
+            postCount: 0,
+            commentCount: 0,
+            role: "User",
+        });
+        setDoc(doc(db, 'posts', email), {
+            id: 8,
+            publisher: "HugoAdmin",
+            title: "Horrible design is not a thing on this website!",
+            description: "uIt's truly good!",
+        });
+        setDoc(doc(db, 'comments', email), {
+            postId: 8,
+            publisher: "Critic",
+            text: "Here is a comment. Whats up?",
+        });
     }
     function logIn(email, password) {
         return signInWithEmailAndPassword(auth, email, password)

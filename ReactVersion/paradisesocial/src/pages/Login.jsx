@@ -38,7 +38,7 @@ const Login = () => {
                             <button className='bg-blue-600 py-3 my-6 rounded font-bold hover:bg-blue-500'>Sign In</button>
                             <div className='flex justify-between items-center text-sm text-gray-600'>
                             </div>
-                            <p className='py-8 text-blue-600'><span className='text-white'>New to Color?</span>
+                            <p className='py-8 text-blue-600'><span className='text-white'>New to Social Paradise?</span>
                             <Link to='/getstarted'> Get Started</Link></p>
                             
                         </form>

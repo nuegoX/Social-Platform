@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserAuth } from '../context/AuthContext';
 import { db } from '../firebase';
 import { updateDoc, doc,  onSnapshot } from 'firebase/firestore';
+import CreatePost from '../components/CreatePost';
 
 
 const Account = () => {
@@ -48,6 +49,7 @@ const Account = () => {
                         <p className='p-3 my-2 bg-gray-700 rounded'>Balance: {points}</p>
                         <p className='p-3 my-2 bg-gray-700 rounded'>Nickname: {name}</p>
                         <button disabled={true} onClick={changeName} className='bg-blue-600 py-3 my-6 rounded font-bold hover:bg-blue-500'>Edit Name (coming soon)</button>
+                     
                         <div className='flex justify-between items-center text-sm text-gray-600'>
                         </div>
                     </div>
