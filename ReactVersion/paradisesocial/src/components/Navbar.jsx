@@ -21,22 +21,19 @@ const Navbar = () => {
     <div className='flex items-center justify-between p-4 z-[100] w-full absolute'>
 
       <div className='flex flex-row'>
-      <p className='text-blue-500 text-4xl font-bold cursor-default'>-</p>
       <Link to='/'>
         <h1 className='text-blue-600 text-4xl font-bold cursor-pointer hover:text-purple-400 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-slow infinite'>Social Paradise</h1>
       </Link>
-      <p className='text-pink-400 mt-4 ml-1 hover:cursor-default'>-</p>
       </div>
 
-      {user?.email ? (<Link to='/dashboard'><p className='text-blue-500 text-3xl cursor-pointer hover:text-purple-400
-       hover:border-blue-500 hover:border-b transition duration-500'>Dashboard</p></Link>) : (<span></span>)}
+     
       
 
       {user?.email ? (
       <div>
 
-        <Link to='/account'>
-          <button className='text-white pr-4 hover:text-blue-200'>Account</button>
+        <Link to='/dashboard'>
+          <button className='text-white pr-4 hover:text-blue-200'>Dashboard</button>
         </Link>
 
         <button onClick={handleLogout} className='bg-blue-600 px-6 py-2 rounded cursor-pointer text-white hover:bg-purple-400'>Log Out</button>

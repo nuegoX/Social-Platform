@@ -5,7 +5,6 @@ import { UserAuth } from '../context/AuthContext'
 import '../index.css';
 import PostList from '../components/PostList';
 import CreatePost from '../components/CreatePost';
-//rafce
 const Home = () => {
 
   const { user } = UserAuth()
@@ -24,23 +23,15 @@ const Home = () => {
       </div>
 
       <div className='w-full flex items-center flex-col mb-10'>
-        <div className=' w-[700px] h-[700px] rounded-md border-4 bg-purple-950 flex flex-col items-center'>
-          <p className='text-yellow-600 text-center mt-10 text-4xl underline'>Test text</p>
-          <p className='text-white text-center text-2xl'>Test text</p>
-          <div className='w-fit h-20 bg-gray-200 hover:bg-gray-400 border-4 border-blue-400 hover:border-blue-500 rounded-md mt-10 flex justify-center items-center p-5'>
-            Create posts.
-          </div>
-          <div className='w-fit h-20 bg-gray-200 hover:bg-gray-400 border-4 border-blue-400 hover:border-blue-500 rounded-md mt-10 flex justify-center items-center p-5'>
-            Engage in discussions.
-          </div>
-        </div>
+
       </div>
 
 
 
       {user?.email !== undefined && user.email !== '' ? 
-  (<Link to='/chat'><button className='bg-blue-600 w-44 h-11 rounded-lg cursor-pointer text-white text-xl hover:bg-purple-400'>Enter Social Paradise</button></Link>) 
-  : (<Link to='/getstarted'><button className='bg-blue-600 w-44 h-11 rounded-lg cursor-pointer text-white text-xl hover:bg-blue-500'>Sign Up</button></Link>)}
+  (<Link to='/dashboard'><button className='bg-blue-600 w-44 h-20 rounded-lg cursor-pointer text-white text-xl hover:bg-purple-400'>Enter App</button></Link>) 
+  : (<div><Link to='/getstarted'><button className='bg-blue-600 w-44 h-11 rounded-lg cursor-pointer text-white text-xl hover:bg-blue-500 hover:border'>Sign Up</button></Link>
+  <Link to='/login'><button className='bg-pink-600 w-44 m-5 h-11 rounded-lg cursor-pointer text-white text-xl hover:bg-pink-500 hover:border'>Log In</button></Link></div>)}
 
     </div>
     </>
