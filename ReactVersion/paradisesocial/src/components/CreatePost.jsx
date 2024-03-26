@@ -44,7 +44,7 @@ const CreatePost = () => {
 
   return (
     <div className="max-w-2xl mx-auto mt-8 bg-gradient-to-br from-blue-500 to-gray-600 text-white rounded-lg shadow-xl p-8">
-      <h2 className="text-3xl font-semibold mb-6">✨ Create a post ✨</h2>
+      <h2 className="text-3xl font-semibold mb-6">✨</h2>
       <div className="mb-6">
         <label className="block text-navy-blue-300 text-sm font-bold mb-2" htmlFor="title">
           Title:
@@ -72,7 +72,7 @@ const CreatePost = () => {
         onClick={handleCreatePost}
         className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full focus:outline-none"
       >
-        ✨ Post ✨
+        Post
       </button>
     </div>
   );
