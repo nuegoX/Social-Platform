@@ -8,7 +8,6 @@ const CreatePost = () => {
 
   const handleCreatePost = async () => {
     if (!auth.currentUser || !title || !description) {
-      // Handle case when the user is not logged in or post fields are empty
       return;
     }
 
@@ -17,18 +16,16 @@ const CreatePost = () => {
         publisher: auth.currentUser.displayName || auth.currentUser.email,
         title,
         description,
-        timestamp: serverTimestamp(), // Use server timestamp
+        timestamp: serverTimestamp(), 
       };
 
       // Add the post to the 'posts' collection with auto-generated ID
       const docRef = await addDoc(collection(db, 'posts'), postData);
 
-      // Optionally, you can count the comments for this post
       const commentsQuery = query(collection(db, 'comments'), where('postId', '==', docRef.id));
       const commentsSnapshot = await getDocs(commentsQuery);
       const commentCount = commentsSnapshot.size;
 
-      // Update the post with the comment count
       await docRef.update({ commentCount });
 
       // Clear the input fields

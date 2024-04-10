@@ -26,8 +26,8 @@ const PostList = () => {
 
         post.comments = comments;
         postsData.push(post);
-        commentInputsData[post.id] = ''; // Initialize the comment input for each post
-        expandedCommentsData[post.id] = false; // Initialize comment section as collapsed
+        commentInputsData[post.id] = ''; 
+        expandedCommentsData[post.id] = false; 
       }
 
       setPosts(postsData);
