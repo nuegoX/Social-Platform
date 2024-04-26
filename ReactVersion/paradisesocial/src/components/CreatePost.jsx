@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { db, auth } from '../firebase';
-import { collection, addDoc, serverTimestamp, getDocs, query, where } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
@@ -13,7 +13,7 @@ const CreatePost = () => {
 
     try {
       const postData = {
-        publisher: auth.currentUser.displayName || auth.currentUser.email,
+        publisher: auth.currentUser.email,
         title,
         description,
         timestamp: serverTimestamp(), 
@@ -22,45 +22,36 @@ const CreatePost = () => {
       // Add the post to the 'posts' collection with auto-generated ID
       const docRef = await addDoc(collection(db, 'posts'), postData);
 
-      const commentsQuery = query(collection(db, 'comments'), where('postId', '==', docRef.id));
-      const commentsSnapshot = await getDocs(commentsQuery);
-      const commentCount = commentsSnapshot.size;
-
-      await docRef.update({ commentCount });
-
-      // Clear the input fields
       setTitle('');
       setDescription('');
 
-      // Refresh the page after creating a post
       window.location.reload();
     } catch (error) {
       console.error('Error creating post: ', error.message);
     }
   };
-
   return (
-    <div className="max-w-2xl mx-auto mt-8 bg-gradient-to-br from-blue-500 to-gray-600 text-white rounded-lg shadow-xl p-8">
-      <h2 className="text-3xl font-semibold mb-6">✨</h2>
+    <div className="max-w-md mx-auto mt-8 p-8 border rounded-lg shadow-xl bg-gray-700">
+      <h2 className="text-3xl font-semibold mb-6 text-white text-center">Create Post</h2>
       <div className="mb-6">
-        <label className="block text-navy-blue-300 text-sm font-bold mb-2" htmlFor="title">
+        <label className="mb-2 text-white">
           Title:
         </label>
         <input
           type="text"
           id="title"
-          className="w-full p-3 border border-pink-300 rounded focus:outline-none focus:border-pink-500 font-bold text-lg text-blue-900"
+          className="w-full p-3 border rounded"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
       <div className="mb-6">
-        <label className="block text-navy-blue-300 text-sm font-bold mb-2" htmlFor="description">
+        <label className="block mb-2 text-white">
           Description:
         </label>
         <textarea
           id="description"
-          className="w-full p-3 border border-pink-300 rounded focus:outline-none focus:border-pink-500 text-blue-900 text-lg"
+          className="w-full p-3 border rounded"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
