@@ -31,9 +31,9 @@ const CreatePost = () => {
     }
   };
   return (
-    <div className="max-w-md mx-auto mt-8 p-8 border rounded-lg shadow-xl bg-gray-700">
-      <h2 className="text-3xl font-semibold mb-6 text-white text-center">Create Post</h2>
-      <div className="mb-6">
+    <div className="max-w-md mx-auto p-2 border rounded-lg shadow-xl bg-gray-800">
+      <h2 className="text-3xl font-semibold text-white text-center">Create Post</h2>
+      <div className="mb-3">
         <label className="mb-2 text-white">
           Title:
         </label>
