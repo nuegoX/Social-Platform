@@ -29,7 +29,7 @@ const Home = () => {
 
 
       {user?.email !== undefined && user.email !== '' ? 
-  (<Link to='/'><button className='bg-blue-600 w-44 h-20 rounded-lg cursor-pointer text-white text-xl hover:bg-purple-400'>Enter App</button></Link>) 
+  (<Link to='/dashboard'><button className='bg-blue-600 w-44 h-20 rounded-lg cursor-pointer text-white text-xl hover:bg-purple-400'>Enter App</button></Link>) 
   : (
   <div><Link to='/getstarted'><button className='bg-blue-600 w-28 h-11 sm:w-44 sm:h-11 rounded-lg cursor-pointer text-white sm:text-xl hover:bg-blue-500 hover:border'>Sign Up</button></Link>
   <Link to='/login'><button className='bg-pink-600 w-28 h-11 sm:w-44 sm:h-11 rounded-lg cursor-pointer text-white sm:text-xl hover:bg-pink-500 hover:border'>Log In</button></Link></div>)}

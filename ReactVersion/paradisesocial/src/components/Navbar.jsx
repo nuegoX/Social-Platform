@@ -32,7 +32,7 @@ const Navbar = () => {
       {user?.email ? (
       <div>
 
-        <Link to='/'>
+        <Link to='/dashboard'>
           <button className='text-white pr-4 hover:text-blue-200'>Dashboard</button>
         </Link>
 
